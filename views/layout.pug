@@ -6,7 +6,7 @@ html
   nav  
     a(href="/")  Members Only 
     if currentUser
-      p Hello !{currentUser.firstname.charAt(0).toUpperCase() + currentUser.firstname.slice(1)}
+      p Hello !{currentUser.firstname}
     div(class="links") 
       if !currentUser
         a(href="/sign-up") Create Account
