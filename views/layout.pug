@@ -3,5 +3,13 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+  nav  
+    a(href="/")  Members Only 
+    div(class="links")
+      a(href="/sign-up") Create Account
+      if !currentUser
+        a(href="/log-in") Log In
+      if currentUser 
+        a(href="/log-out") Log Out
   body
     block content
