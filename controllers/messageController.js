@@ -5,6 +5,15 @@ const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
+exports.index = (req, res, next) => {
+  Message.find({}).exec((err, results) => {
+    if (err) {
+      return next(err);
+    }
+    res.render('index', { messages: results });
+  });
+};
+
 exports.new_message_form_get = (req, res) => {
   if (!res.locals.currentUser) {
     res.redirect('/');
