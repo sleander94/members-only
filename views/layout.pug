@@ -5,6 +5,8 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   nav  
     a(href="/")  Members Only 
+    if currentUser
+      p Hello !{currentUser.firstname.charAt(0).toUpperCase() + currentUser.firstname.slice(1)}
     div(class="links")
       a(href="/sign-up") Create Account
       if !currentUser
