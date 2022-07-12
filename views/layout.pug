@@ -10,6 +10,7 @@ html
       if !currentUser
         a(href="/log-in") Log In
       if currentUser 
-        a(href="/log-out") Log Out
+        form(action="/log-out" method="POST")
+          button Log Out
   body
     block content
