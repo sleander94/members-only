@@ -14,5 +14,6 @@ router.post('/join', user_controller.member_join_form_post);
 router.get('/', message_controller.index);
 router.get('/new-message', message_controller.new_message_form_get);
 router.post('/new-message', message_controller.new_message_form_post);
+router.post('/delete-message', message_controller.delete_message_post);
 
 module.exports = router;
