@@ -3,6 +3,11 @@ const Message = require('../models/message');
 const async = require('async');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
+
+exports.sign_up_form_get = (req, res) => {
+  res.render('sign-up-form');
+};
 
 exports.sign_up_form_post = [
   body('firstname', 'Firstname is required')
@@ -14,9 +19,11 @@ exports.sign_up_form_post = [
     .trim()
     .isLength({ max: 16 })
     .escape(),
-  body('password', 'Password must be 5 or more characters').isLength({
-    min: 5,
-  }),
+  body('password', 'Password must be 5 or more characters')
+    .isLength({
+      min: 5,
+    })
+    .escape(),
   body('confirm-password').custom((value, { req }) => {
     if (value !== req.body.password) {
       throw new Error('Password confirmation does not match password');
@@ -54,3 +61,13 @@ exports.sign_up_form_post = [
     });
   },
 ];
+
+exports.log_in_form_get = (req, res) => {
+  res.render('log-in-form');
+};
+
+exports.log_in_form_post = passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/log-in',
+  failureMessage: true,
+});
