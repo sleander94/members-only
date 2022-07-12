@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 New Message
+  form(action="" method="POST")
+    div(class="form-field")  
+      label(for="title") Title:
+      input(name="title" type="text" placeholder="Message Title" value=(undefined===message ? "" : message.title))
+    div(class="form-field")  
+      label(for="text") Message:
+      textarea(name="text" cols="30" rows="10" placeholder="Write your message here..." value=(undefined===message ? "" : message.text))
+    button Post
+  if errors
+    ul 
+      for error in errors
+        li= error.msg
