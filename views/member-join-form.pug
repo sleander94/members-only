@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 Join the Club!
+  form(action="" method="POST")
+    div(class="form-field")  
+      label(for="password") What's the password?:
+      input(name="password" type="password" required=true)
+    button Join
+  if error
+    p=error
