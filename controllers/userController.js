@@ -90,10 +90,37 @@ exports.log_in_form_post = passport.authenticate('local', {
 });
 
 exports.log_out_post = (req, res, next) => {
-  req.logout(function (err) {
+  req.logout((err) => {
     if (err) {
       return next(err);
     }
     res.redirect('/');
   });
+};
+
+exports.member_join_form_get = (req, res) => {
+  if (!res.locals.currentUser) {
+    res.redirect('/');
+  }
+  res.render('member-join-form');
+};
+
+exports.member_join_form_post = (req, res, next) => {
+  if (req.body.password !== process.env.MEMBERPASS) {
+    res.render('member-join-form', {
+      error: 'Incorrect password.',
+    });
+    return;
+  } else {
+    User.findOneAndUpdate(
+      { username: res.locals.currentUser.username },
+      { isMember: true },
+      (err) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect('/');
+      }
+    );
+  }
 };
