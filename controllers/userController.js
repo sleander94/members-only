@@ -34,8 +34,12 @@ exports.sign_up_form_post = [
       const errors = validationResult(req);
 
       const user = new User({
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
+        firstname:
+          req.body.firstname.charAt(0).toUpperCase() +
+          req.body.firstname.slice(1),
+        lastname:
+          req.body.lastname.charAt(0).toUpperCase() +
+          req.body.lastname.slice(1),
         username: req.body.username,
         password: hashedPassword,
         isMember: false,
