@@ -10,9 +10,13 @@ html
     div(class="links") 
       if !currentUser
         a(href="/sign-up") Create Account
-        a(href="/log-in") Log In
-      if currentUser 
-        a(href="/join") Join Club
+        a(href="/log-in") Log In 
+      if currentUser
+        if currentUser.isMember === false
+          a(href="/join") Join Club
+        if currentUser.isMember === true 
+          p Club Member Zone
+        a(href="/new-message") New Message   
         form(action="/log-out" method="POST")
           button Log Out
   body
