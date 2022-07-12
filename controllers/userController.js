@@ -62,7 +62,16 @@ exports.sign_up_form_post = [
             if (err) {
               return next(err);
             }
-            res.redirect('/');
+            const newUser = {
+              id: user._id,
+              username: user.username,
+            };
+            req.login(newUser, (err) => {
+              if (err) {
+                return next(err);
+              }
+              res.redirect('/');
+            });
           });
         }
       });
