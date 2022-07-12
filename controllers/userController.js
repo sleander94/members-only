@@ -1,6 +1,4 @@
 const User = require('../models/user');
-const Message = require('../models/message');
-const async = require('async');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
@@ -58,7 +56,7 @@ exports.sign_up_form_post = [
           });
           return;
         } else {
-          user.save(function (err) {
+          user.save((err) => {
             if (err) {
               return next(err);
             }
