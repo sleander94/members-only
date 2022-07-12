@@ -43,21 +43,29 @@ exports.sign_up_form_post = [
         isMember: false,
       });
 
-      if (!errors.isEmpty()) {
-        user.password = req.body.password;
-        res.render('sign-up-form', {
-          user: user,
-          errors: errors.array(),
-        });
-        return;
-      } else {
-        user.save(function (err) {
-          if (err) {
-            return next(err);
-          }
-          res.redirect('/');
-        });
-      }
+      User.findOne({ username: user.username }).exec((err, results) => {
+        if (err) {
+          return next(err);
+        }
+        if (results !== null || !errors.isEmpty()) {
+          user.password = req.body.password;
+          res.render('sign-up-form', {
+            user: user,
+            errors:
+              results == null
+                ? errors.array()
+                : [{ msg: 'Username already exists.' }],
+          });
+          return;
+        } else {
+          user.save(function (err) {
+            if (err) {
+              return next(err);
+            }
+            res.redirect('/');
+          });
+        }
+      });
     });
   },
 ];
