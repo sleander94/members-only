@@ -7,11 +7,12 @@ html
     a(href="/")  Members Only 
     if currentUser
       p Hello !{currentUser.firstname.charAt(0).toUpperCase() + currentUser.firstname.slice(1)}
-    div(class="links")
-      a(href="/sign-up") Create Account
+    div(class="links") 
       if !currentUser
+        a(href="/sign-up") Create Account
         a(href="/log-in") Log In
       if currentUser 
+        a(href="/join") Join Club
         form(action="/log-out" method="POST")
           button Log Out
   body
