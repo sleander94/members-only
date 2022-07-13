@@ -1,0 +1,52 @@
+#form {
+  form {
+    display: grid;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 24px;
+    gap: 18px;
+    .form-field {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      label {
+        width: 30%;
+      }
+      input,
+      textarea {
+        width: 70%;
+      }
+      input {
+        height: 1rem;
+      }
+    }
+    button {
+      justify-self: center;
+      color: $primaryColor;
+      padding: 4px;
+      border: 1px solid $textColor;
+    }
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  #form {
+    form {
+      .form-field {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        input,
+        label,
+        textarea {
+          width: 100%;
+        }
+        input,
+        textarea {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
