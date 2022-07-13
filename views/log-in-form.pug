@@ -1,14 +1,15 @@
 extends layout
 
 block content
-  h1 Log In
-  form(action="" method="POST")
-    div(class='form-field')
-      label(for="username") Username:
-      input(name="username" placeholder="Username" type="text" required=true)
-    div(class="form-field")  
-      label(for="password") Password:
-      input(name="password" type="password" required=true)
-    button Log In   
-  if error
-      p= error
+  section(id="form")
+    h1 Log In
+    form(action="" method="POST")
+      div(class='form-field')
+        label(for="username") Username:
+        input(name="username" placeholder="Username" type="text" required=true)
+      div(class="form-field")  
+        label(for="password") Password:
+        input(name="password" placeholder="Password" type="password" required=true)
+      button Log In   
+    if error
+        p= error
