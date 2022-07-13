@@ -19,6 +19,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: $backgroundColor;
   color: $textColor;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 section,
@@ -42,4 +45,17 @@ button {
   font: inherit;
   cursor: pointer;
   outline: inherit;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  padding-bottom: 8px;
+  gap: 24px;
+  img {
+    filter: invert(99%) sepia(70%) saturate(325%) hue-rotate(191deg)
+      brightness(116%) contrast(87%);
+  }
 }
