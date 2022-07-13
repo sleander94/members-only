@@ -7,6 +7,7 @@ var logger = require('morgan');
 const session = require('express-session');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
+const flash = require('connect-flash');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 
@@ -56,6 +57,7 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
+app.use(flash());
 app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
