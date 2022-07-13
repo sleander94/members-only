@@ -1,25 +1,26 @@
 extends layout
 
 block content
-  h1 Sign Up
-  form(action="" method="POST")
-    div(class='form-field')
-      label(for="firstname") Firstname:
-      input(name="firstname" placeholder="First Name" type="text" required=true value=(undefined===user ? "" : user.firstname))
-    div(class='form-field')
-      label(for="lastname") Lastname:
-      input(name="lastname" placeholder="Last Name" type="text" required=true value=(undefined===user ? "" : user.lastname))
-    div(class='form-field')
-      label(for="username") Username:
-      input(name="username" placeholder="Username" type="text" required=true value=(undefined===user ? "" : user.username))
-    div(class="form-field")  
-      label(for="password") Password:
-      input(name="password" type="password" required=true value=(undefined===user ? "" : user.password))
-    div(class="form-field")  
-      label(for="confirm-password") Confirm Password:
-      input(name="confirm-password" type="password")
-    button Create Account 
-  if errors 
-    ul 
-      for error in errors 
-        li= error.msg
+  section(id="form")
+    h1 Sign Up
+    form(action="" method="POST")
+      div(class='form-field')
+        label(for="firstname") Firstname:
+        input(name="firstname" placeholder="First Name" type="text" required=true value=(undefined===user ? "" : user.firstname))
+      div(class='form-field')
+        label(for="lastname") Lastname:
+        input(name="lastname" placeholder="Last Name" type="text" required=true value=(undefined===user ? "" : user.lastname))
+      div(class='form-field')
+        label(for="username") Username:
+        input(name="username" placeholder="Username (8-16 characters)" type="text" required=true value=(undefined===user ? "" : user.username))
+      div(class="form-field")  
+        label(for="password") Password:
+        input(name="password" placeholder="Password (At least 5 characters)" type="password" required=true value=(undefined===user ? "" : user.password))
+      div(class="form-field")  
+        label(for="confirm-password") Confirm Password:
+        input(name="confirm-password" placeholder="Confirm Password" type="password" )
+      button Create Account 
+    if errors 
+      ul 
+        for error in errors 
+          li= error.msg
