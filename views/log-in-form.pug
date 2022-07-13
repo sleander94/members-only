@@ -10,7 +10,5 @@ block content
       label(for="password") Password:
       input(name="password" type="password" required=true)
     button Log In   
-  if errors 
-    ul 
-      for error in errors 
-        li= error.msg 
+  if error
+      p= error
