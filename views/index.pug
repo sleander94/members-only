@@ -1,21 +1,29 @@
 extends layout
 
 block content
-  h2 Messages
-  ul
-    for message in messages
-      li 
-        h2 !{message.title}
-        if currentUser
-          if currentUser.isMember 
-            div(class='author-time')
-              p !{message.author} 
-              p !{message.timestamp}
-        p !{message.text}
-        if currentUser 
-          if currentUser.isAdmin 
-            form(action="/delete-message" method="POST")
-              input(type="text" name="id" hidden="true" value=message._id)
-              button Delete Message
+  section(id="index")
+    if currentUser
+      if currentUser.isMember 
+        p Welcome, Club Member 
+          span(class="primary") !{currentUser.firstname}
+      if !currentUser.isMember   
+        p Welcome, 
+          span(class="primary") !{currentUser.firstname}
+    h1 Messages
+    ul
+      for message in messages
+        li 
+          h2 !{message.title}
+          if currentUser
+            if currentUser.isMember 
+              div(class='author-time')
+                p(class="primary") !{message.author} 
+                p !{message.timestamp}
+          p(class="message-text") !{message.text}
+          if currentUser 
+            if currentUser.isAdmin 
+              form(action="/delete-message" method="POST")
+                input(type="text" name="id" hidden="true" value=message._id)
+                button Delete Message
 
 
