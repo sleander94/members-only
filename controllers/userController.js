@@ -82,13 +82,13 @@ exports.sign_up_form_post = [
 ];
 
 exports.log_in_form_get = (req, res) => {
-  res.render('log-in-form');
+  res.render('log-in-form', { error: req.flash().error });
 };
 
 exports.log_in_form_post = passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/log-in',
-  failureMessage: true,
+  failureFlash: true,
 });
 
 exports.log_out_post = (req, res, next) => {
