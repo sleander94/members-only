@@ -10,6 +10,8 @@ const bcrypt = require('bcryptjs');
 const flash = require('connect-flash');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
+const compression = require('compression')
+const helmet = require('helmet')
 
 const User = require('./models/user');
 
@@ -56,6 +58,8 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
+app.use(helmet())
+app.use(compression())
 app.use(flash());
 app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
