@@ -2,11 +2,10 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel='stylesheet', href='/stylesheets/main.css')
   nav  
-    a(href="/")  Members Only 
-    if currentUser
-      p Hello !{currentUser.firstname}
+    a(href="/" class="title")  Members Only 
     div(class="links") 
       if !currentUser
         a(href="/sign-up") Create Account
@@ -14,8 +13,6 @@ html
       if currentUser
         if currentUser.isMember === false
           a(href="/join") Join Club
-        if currentUser.isMember === true 
-          p Club Member Zone
         a(href="/new-message") New Message   
         form(action="/log-out" method="POST")
           button Log Out
