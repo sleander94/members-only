@@ -1,9 +1,5 @@
-const User = require('../models/user');
 const Message = require('../models/message');
-const async = require('async');
 const { body, validationResult } = require('express-validator');
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
 
 exports.index = (req, res, next) => {
   Message.find({}).exec((err, results) => {
