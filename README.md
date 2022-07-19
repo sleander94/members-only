@@ -1,6 +1,6 @@
 # Members Only Express App
 
-A simple CRUD app build using Node.js and Express.
+A simple message board app built using Node.js and Express.
 
 Rendered with PUG and styled with SASS.
 
